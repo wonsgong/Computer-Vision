@@ -1,4 +1,4 @@
-﻿# OpenCV 기초 사용법
+# OpenCV 기초 사용법
 ## 1. 영상의 속성과 픽셀 값 처리
 opencv 에서는 영상 데이터를 numpy.ndarray 로 표현
 ```python 
@@ -117,3 +117,124 @@ cv2.putText(img, text, org, fontFace, fontScale, thickness=None, lineType=None, 
 `fontFace` : 폰트 종류. `cv2.FONT_HERSHEY_` 로 시작하는 상수. 한글은 지원안함.
 `fontScale` : 폰트 크기
 `bottomLeftOrigin` : 좌측 하단을 원점으로 간주, T/F -> 기본값은 True
+
+## 5. 카메라와 동영상
+*    OpenCV 에서는 `VideoCapture` 클래스를 지원함으로써 카메라와 동영상 처리 작업을 할 수 있다.
+
+### 5-1 VideoCapture 클래스
+*    VideoCapture 클래스는 카메라/동영상 처리를 위한 클래스로 다양한 함수를 지원.
+* 객체 생성
+```python
+    cv2.VideoCapture(index,apiPreference=None) -> retval
+    cv2.VideoCapture.open(index,apiPreference=None) -> retval
+    cv2.VideoCapture.isOpened() -> bool # 잘 열렸는 지 확인.
+```
+`index` : 시스템 기본 카메라를 기본 방법으로 열려면 `index = 0`. 비디오로 열려면 `index = filename`
+`apiPreference` : 선호하는 카메라(동영상) 처리 방법을 지정.
+`retval` : `VideoCapture` 객체.  `open` 은 T/F
+* 프레임 읽어오기
+```python
+    cv2.VideoCapture.read(image=None) -> retval, image
+```
+`retval` : T/F
+`image` : 현재 프레임(`np.ndarray`)
+반복문을 통해 영상 프레임을 지속적으로 받아올 수 있다. (코드 참고)
+* 장치 속성 값 참조
+```python
+    cv2.VideoCapture.get(propId) -> retval # 속성 값 가져오기
+    cv2.VideoCapture.set(propId, value) -> retval # 속성 값 세팅하기
+```    
+`propId` : OpenCV 문서 참조.  예) `cv2.CAP_PROP_FRAME_WIDTH` : 프레임 가로크기
+`value` : 속성 값
+`retval` : 성공하면 해당 속성 값(T), 실패 시 0(F) 
+* 비디오 객체 release
+```python
+    cv2.VideoCapture.release()
+```
+
+### 5-2 VideoWriter 클래스
+*    일련의 프레임을 동영상 파일로 저장할 수 있게 해주는 클래스.
+*    프레임은 모드 크기와 데이터 타입이 같아야 한다.
+*    Fourcc(4-문자 코드, four character code) 
+    *    동영상 파일의 코덱, 압축 방식, 색상, 픽셀 포맷 등을 정의하는 정수 값.
+    ```python
+        cv2.VideoWriter_fourcc(*'DIVX') # DIVX MPEG-4 코덱
+        cv2.VideoWriter_fourcc(*'XVID') # XVID MPEG-4 코덱
+        cv2.VideoWriter_fourcc(*'MJPG') # Motion-JPEG 코덱
+        # 그 밖에 더 지원함        
+    ```
+* 파일 열기
+```python
+    cv2.VideoWriter(filename, fourcc, fps, frameSize, isColor=None) -> retval
+    cv2.VideoWriter.open(filename, fourcc, fps, frameSize, isColor=None) -> retval
+    cv2.VideoWriter.isOpened() # 잘 열렸는 지 확인
+```
+`filename` : 비디오 파일 이름
+`fourcc` :  위 참고
+`fps` : 초당 프레임 수
+`framesize` : 프레임 크기, (640,480)
+`isColor` : 컬러면 T , 아니면 F
+* 파일 쓰기
+```python
+    cv2.VideoWriter.writer(image)
+```
+
+## 6. 키보드 이벤트 처리하기
+*    키보드 입력 대기 함수
+```python
+    cv2.waitKey(delay=None) -> retval
+```
+`delay` : 밀리초 단위 대기 시간. `<=0` 이면 무한히 기다림. 기본값은 0
+`retval` : 눌린 키의 ASCII code , 안 눌리면 -1
+특정 키 입력을 확인하기 위해선 `ord()` 함수 이용
+```python
+    while True:
+        if cv2.waitKey() == ord('q') :
+            print("Input is Q")
+```     
+
+## 7. 마우스 이벤트 처리하기
+* 마우스 이벤트 콜백함수 
+```python
+    cv2.setMouseCallback(windowName, onMouse, param=None)
+```
+`windowName` : 마우스 이벤트 처리를 수행할 창 이름
+`onMouse` : 마우스 이벤트 처리를 위한 콜백 함수 이름 
+`param`  : 콜백 함수에 전달할 데이터
+*    `onMouse(event, x, y, flags, param)`
+`event` : 마우스 이벤트 종류 `cv2.EVENT_MOUSEMOVE` , `cv2.EVENT_LBUTTONDOWN` 등. (문서 참고)
+`x,y` : 마우스 이벤트 발생 좌표
+`flags` : 마우스 이벤트 발생 시 상태 , `cv2.EVENT_FLAG_LBUTTON` 등. (문서 참고) 
+`param` : 마우스 이벤트 콜백함수의 `param` 과 같음.
+ 
+ ## 8. 트랙바 사용하기
+ * 프로그램 동작 중 사용자가 지정한 범위 안의 값을 선택할 수 있는 컨트롤
+ * OpenCV 에서 제공하는 (유일한?) GUI
+ * 생성 함수
+ ```python
+    cv2.createTrackbar(trackbarName, windowName, value, count, onChange)
+ ```
+ `trackbarname` : 트랙바 이름
+ `windowName` : 트랙바 생성할 창 이름
+ `value` : 트랙바 위치 초기 값
+ `count` : 트랙바 최대 값. 최소 값은 항상 0.
+ `onChange` : 트랙바 위치 변경될 때마다 호출할 콜백 함수 이름
+ *    `onChange(pos)` 
+    `pos` : 트랙바 위치
+
+
+## 9. 연산 시간 측정 방법
+* 컴퓨터 비전은 대용량 데이터를 다루고, 일련의 과정을 통해 최종 결과를 얻으므로 매 단계에서 연산 시간을 측정하여 관리할 필요가 있다.
+* `TickMeter` 클래스를 이용하여 연산 시간을 측정
+### 9-1 TickMeter 클래스
+```python
+    cv2.TickMeter() -> tm # TickMeter 클래스 생성
+    
+    tm.start() # 시간 측정 시작
+    tm.stop()  # 시간 측정 끝
+    tm.reset() # 시간 측정 초기화
+    
+    tm.getTimeSec()   # 측정 시간을 초 단위로 반환
+    tm.getTimeMilli() # 측정 시간을 밀리초 단위로 반환
+    tm.getTimeMicro() # 측정 시간을 마이크로초 단위로 반환
+``` 
