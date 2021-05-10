@@ -3,7 +3,7 @@
 화소처리 : 입력 영상의 특정 좌표 픽셀 값을 변경하여 출력 영상의 해당 좌표 픽셀 값으로 설정하는 연산 
 `dst(x,y) = src(x,y) + n` 
 
-<img src="image/brightness.png", width="100">
+![brightness](image/brightness.png)
 
 범위가 [0,255] 벗어나게 되면 알아서 맞춰주는 연산(Saturate 연산)
 `dst(x,y) = saturate(src(x,y)+n)`
