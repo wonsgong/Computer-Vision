@@ -2,7 +2,7 @@
 ## 1. 밝기 조절
 화소처리 : 입력 영상의 특정 좌표 픽셀 값을 변경하여 출력 영상의 해당 좌표 픽셀 값으로 설정하는 연산 
 `dst(x,y) = src(x,y) + n` 
-![brightness](./image/brightness.png)
+![brightness](./image/brightness.png){: width="200" height="200"}
 범위가 [0,255] 벗어나게 되면 알아서 맞춰주는 연산(Saturate 연산)
 `dst(x,y) = saturate(src(x,y)+n)`
 ```python 
@@ -76,8 +76,7 @@ RGB 순서가 아닌 BGR 순서를 기본으로 사용.
 	# 색 공간 변환
 	cv2.cvtColor(src,code,dst=None,dstCn=None) -> dst
 ```
-`code` : 색 변환 코드, 예) cv2.COLOR_BGR2GRAY , <a href url=https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html> OpenCv 문서 페이지 참고</a>
-
+`code` : 색 변환 코드, 예) cv2.COLOR_BGR2GRAY , [OpenCV 문서 참고](https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html)
 * GrayScale
 	RGB to Gray : `Y = 0.299R + 0.587G + 0.114B`  식으로 변환. 녹색 성분이 제일 큰 비중.
 	용량 줄고 속도 빠름. But 색상 정보 손실
