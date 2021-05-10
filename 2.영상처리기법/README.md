@@ -40,6 +40,7 @@
 	`dst(x,y) = saturate(src1(x,y) - src2(x,y))`
 	아래와 같은 작업이 가능하다. 
 	![substract](./image/substract.png)
+	
 	```python
 		# 인자는 add 함수와 같다.
 		cv2.substract(src1,src2, ...) -> dst
@@ -66,6 +67,7 @@
 컬러 영상은 3차원 `np.ndarray` 로 표현. `image.shape = (h,w,3)`
 RGB 순서가 아닌 BGR 순서를 기본으로 사용.
 ![colorspace](./image/colorspace.png)
+
 컬러 영상을 각 채널로 분리가 가능하다. -> grayscale로 볼 수 있다.
 ```python
 	# 채널 분리
@@ -84,7 +86,9 @@ RGB 순서가 아닌 BGR 순서를 기본으로 사용.
 	용량 줄고 속도 빠름. But 색상 정보 손실
 * HSV 색 공간
 	Hue(색상) / Saturation(채도) / Value(명도) 
-	![hsv1](./image/hsv1.png) 	![hsv2](./image/hsv2.png)  
+	
+	![hsv1](./image/hsv1.png)![hsv2](./image/hsv2.png)  
+	
 	cv2.CV_8U 영상의 경우 
 	* 0 <= H <= 179
 	* 0 <= S <= 255
@@ -118,6 +122,7 @@ RGB 순서가 아닌 BGR 순서를 기본으로 사용.
 기본적인 조절 함수 : `dst(x,y) = saturate(s * src(x,y))` => 밝기 문제.
 효과적인 명암비 조절 함수  : `dst(x,y) = saturate((1+\alpha)src(x,y) - 128\alpha)`
 ![contrast](./image/contrast.png)
+
 대부분의 영상에서 효과적으로 작용. but 모든 영상에 대해서 그런것은 아님, 정도는 아님.
 
 ### 5.1 히스토그램 스트레칭
@@ -137,6 +142,7 @@ RGB 순서가 아닌 BGR 순서를 기본으로 사용.
 정규화된 히스토그램 함수에서 누적 분포 함수를 구한 후 반올림 해준다.(말로하니 헷갈림)
 `dst(x,y) = round(cdf(src(x,y)) * Lmax)` 
 ![histogramequalization](./image/histogramequalization.png)
+
 ```python
 	# 평활화 함수
 	cv2.equalizeHist(src,dst=None) -> dst
@@ -144,6 +150,7 @@ RGB 순서가 아닌 BGR 순서를 기본으로 사용.
 ```
 * 히스토그램 스트레칭 VS 히스토그램 평활화
 ![cmpequalize](./image/cmpequalize.png)
+
 스트레칭 시 히스토그램 간격이 일정하게 적용.
 평활화 시 간격이 다름. 
 -> 보기에 따라 좋고 나쁨이 존재.(케바케)
