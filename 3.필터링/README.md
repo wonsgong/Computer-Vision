@@ -11,7 +11,7 @@
 * 마스크 연산
 	다양한 모양의 크기의 마스크가 있지만, 주로 `3 * 3 mask` 사용.
 	형태와 값에 따라 필터의 역할이 결정된다.(부드럽게, 엣지 검출,잡음 제거 등)
-<img src="images/mask.png", width="1000">
+	<img src="images/mask.png", width="1000">
 	=> Correlation(convolution)
 	
 	최외각 픽셀 처리 : 가상의 픽셀이 있다고 가정. OpenCv default  는 대칭.
