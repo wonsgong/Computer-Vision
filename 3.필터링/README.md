@@ -93,11 +93,11 @@ cv2.GaussianBlur(src,ksize,sigmaX,dst=None, sigmaY=None,
 가우시안 잡음 제거에는 가우시안 필터가 효과적이다. => 활용해 만든게 양방향 필터
 엣지 보전 잡음 제거 필터의 하나.
 
-$$ BF[I]_{p} =  {1 \over W} \sum\limits_{q \in S}G_{\sigma_{s}}(||p-q||)G_{\sigma_{r}}(|I_{p}-I_{q}|)I_q $$
+$$BF[I]_{p} =  {1 \over W} \sum\limits_{q \in S}G_{\sigma_{s}}(||p-q||)G_{\sigma_{r}}(|I_{p}-I_{q}|)I_q$$
 
-$ G_{\sigma_s}(||p-q||) $ :기준 픽셀과 이웃 픽셀 거리
+$G_{\sigma_s}(||p-q||)$ :기준 픽셀과 이웃 픽셀 거리
 
-$ G_{\sigma_{r}}(|I_{p}-I_{q}|) $ : 픽셀 값의 차이.
+$G_{\sigma_{r}}(|I_{p}-I_{q}|)$ : 픽셀 값의 차이.
 즉, 기준 픽셀과 이웃 픽셀 거리와 픽셀 값의 차이를 고려. => 엣지가 아닌 부분에서만 블러링을 적용.
 ```python
 cv2.bilateralFilter(src,d,sigmaColor,sigmaSpace,dst=None,
