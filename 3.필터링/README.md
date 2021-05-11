@@ -94,7 +94,9 @@ cv2.GaussianBlur(src,ksize,sigmaX,dst=None, sigmaY=None,
 엣지 보전 잡음 제거 필터의 하나.
 
 $$BF[I]_{p} =  {1 \over W} \sum\limits_{q \in S}G_{\sigma_{s}}(||p-q||)G_{\sigma_{r}}(|I_{p}-I_{q}|)I_q$$
+
 $G_{\sigma_s}(||p-q||)$ :기준 픽셀과 이웃 픽셀 거리
+
 $G_{\sigma_{r}}(|I_{p}-I_{q}|)$ : 픽셀 값의 차이.
 즉, 기준 픽셀과 이웃 픽셀 거리와 픽셀 값의 차이를 고려. => 엣지가 아닌 부분에서만 블러링을 적용.
 ```python
