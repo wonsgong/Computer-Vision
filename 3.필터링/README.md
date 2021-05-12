@@ -11,10 +11,12 @@
 * 마스크 연산
 	다양한 모양의 크기의 마스크가 있지만, 주로 `3 * 3 mask` 사용.
 	형태와 값에 따라 필터의 역할이 결정된다.(부드럽게, 엣지 검출,잡음 제거 등)
-	![mask](./image/mask.png) 
+	![mask](./image/mask.png)
+	
 	=> Correlation(convolution)
 	
 	최외각 픽셀 처리 : 가상의 픽셀이 있다고 가정. OpenCv default  는 대칭.
+	
 	![outpixel](./image/outpixel.png)
 
 * 기본적인 2D 필터링
@@ -90,7 +92,11 @@ cv2.GaussianBlur(src,ksize,sigmaX,dst=None, sigmaY=None,
 ### 3.2 양방향 필터(Bilateral Filter)
 가우시안 잡음 제거에는 가우시안 필터가 효과적이다. => 활용해 만든게 양방향 필터
 엣지 보전 잡음 제거 필터의 하나.
-$$BF[I]_{p} =  {1 \over W} \sum\limits_{q \in S}G_{\sigma_{s}}(||p-q||)G_{\sigma_{r}}(|I_{p}-I_{q}|)I_q$$$G_{\sigma_s}(||p-q||)$ :기준 픽셀과 이웃 픽셀 거리
+
+$$BF[I]_{p} =  {1 \over W} \sum\limits_{q \in S}G_{\sigma_{s}}(||p-q||)G_{\sigma_{r}}(|I_{p}-I_{q}|)I_q$$
+
+$G_{\sigma_s}(||p-q||)$ :기준 픽셀과 이웃 픽셀 거리
+
 $G_{\sigma_{r}}(|I_{p}-I_{q}|)$ : 픽셀 값의 차이.
 즉, 기준 픽셀과 이웃 픽셀 거리와 픽셀 값의 차이를 고려. => 엣지가 아닌 부분에서만 블러링을 적용.
 ```python
