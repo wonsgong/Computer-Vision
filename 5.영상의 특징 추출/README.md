@@ -105,7 +105,7 @@ cv2.HoughCircles(image, method, dp, minDist, circles=None, param1=None, param2=N
 
 * `cv.HOUGH_GRADIET` vs `cv.HOUGH_GRADIENT_ALT` 
 	 OpenCV 4.3 버전부터 지원.
-	 ALT 가 보다 정확한 원 검출 가능. -> 파라미터가 달라짐.			![OpenCV 공식 문서 참고](https://docs.opencv.org/4.3.0/dd/d1a/group__imgproc__feature.html#ga47849c3be0d0406ad3ca45db65a25d2d)
+	 ALT 가 보다 정확한 원 검출 가능. -> 파라미터가 달라짐.[OpenCV 공식 문서 참고](https://docs.opencv.org/4.3.0/dd/d1a/group__imgproc__feature.html#ga47849c3be0d0406ad3ca45db65a25d2d)
 
 ## 5. 실습
 동전 카운터 : 영상의 동전을 검출하여 금액이 얼마인지 자동 계산 프로그램.
