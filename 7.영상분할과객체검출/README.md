@@ -13,11 +13,11 @@
 ```python
 cv2.grabCut(img, mask, rect, bgdModel, fgdModel, iterCount, mode=None) -> mask, bgdModel, fgdModel
 ```
-`mask` : `cv2.GC_BGD(0)` , `cv2.GC_FGD(0)` , `cv2.GC_PR_BGD(2)` , `cv2.GC_PR_FGD(3)` 네 개의 값으로 구성. (전경/배경,Probablity)
-`rect` : ROI 영역. `cv2.GC_INIT_WITH_RECT` 모드 시 사용.
-`bgdModel, fgdModel` : 임시 배경/전경 모델 행렬(1,65). 같은 영상 처치시 변경 금지
-`iterCount` : 결과 생성을 위한 반복 횟수
-`mode` : `cv2.GC_` 로 시작하는 모드 상수. `cv2.GC_INIT_WITH_RECT` 로 초기화, `cv2.GC_INIT_WITH_MASK` 로 업데이트
+`mask` : `cv2.GC_BGD(0)` , `cv2.GC_FGD(0)` , `cv2.GC_PR_BGD(2)` , `cv2.GC_PR_FGD(3)` 네 개의 값으로 구성. (전경/배경,Probablity)  
+`rect` : ROI 영역. `cv2.GC_INIT_WITH_RECT` 모드 시 사용.  
+`bgdModel, fgdModel` : 임시 배경/전경 모델 행렬(1,65). 같은 영상 처치시 변경 금지  
+`iterCount` : 결과 생성을 위한 반복 횟수  
+`mode` : `cv2.GC_` 로 시작하는 모드 상수. `cv2.GC_INIT_WITH_RECT` 로 초기화, `cv2.GC_INIT_WITH_MASK` 로 업데이트  
 
 > 영상 처리에서는 잘 사용하지 않는다. -> 전경/배경이 명확하게 구분되는 영상에서 잘 작동된다.
 
