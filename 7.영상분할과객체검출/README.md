@@ -13,11 +13,11 @@
 ```python
 cv2.grabCut(img, mask, rect, bgdModel, fgdModel, iterCount, mode=None) -> mask, bgdModel, fgdModel
 ```
-`mask` : `cv2.GC_BGD(0)` , `cv2.GC_FGD(0)` , `cv2.GC_PR_BGD(2)` , `cv2.GC_PR_FGD(3)` 네 개의 값으로 구성. (전경/배경,Probablity)
-`rect` : ROI 영역. `cv2.GC_INIT_WITH_RECT` 모드 시 사용.
-`bgdModel, fgdModel` : 임시 배경/전경 모델 행렬(1,65). 같은 영상 처치시 변경 금지
-`iterCount` : 결과 생성을 위한 반복 횟수
-`mode` : `cv2.GC_` 로 시작하는 모드 상수. `cv2.GC_INIT_WITH_RECT` 로 초기화, `cv2.GC_INIT_WITH_MASK` 로 업데이트
+`mask` : `cv2.GC_BGD(0)` , `cv2.GC_FGD(0)` , `cv2.GC_PR_BGD(2)` , `cv2.GC_PR_FGD(3)` 네 개의 값으로 구성. (전경/배경,Probablity)  
+`rect` : ROI 영역. `cv2.GC_INIT_WITH_RECT` 모드 시 사용.  
+`bgdModel, fgdModel` : 임시 배경/전경 모델 행렬(1,65). 같은 영상 처치시 변경 금지  
+`iterCount` : 결과 생성을 위한 반복 횟수  
+`mode` : `cv2.GC_` 로 시작하는 모드 상수. `cv2.GC_INIT_WITH_RECT` 로 초기화, `cv2.GC_INIT_WITH_MASK` 로 업데이트  
 
 > 영상 처리에서는 잘 사용하지 않는다. -> 전경/배경이 명확하게 구분되는 영상에서 잘 작동된다.
 
@@ -25,8 +25,8 @@ cv2.grabCut(img, mask, rect, bgdModel, fgdModel, iterCount, mode=None) -> mask, 
 * 모멘트(Moments) :
 영상의 형태를 표현하는 일련의 실수값.
 특정 함수 집합과의 상관 관계(correlation) 형태로 계산
-`Geometric moments` `Central moments` `Normalize central moments` -> OpenCV 지원
-`Legendre moments` `ART(Angular Radial Transform)` 등 -> 최신의 방법.
+`Geometric moments` `Central moments` `Normalize central moments` -> OpenCV 지원  
+`Legendre moments` `ART(Angular Radial Transform)` 등 -> 최신의 방법.  
 * Hu의 7개 불변 모멘트
 3개 이하의 정규화된 중심 모멘트를 조합하여 만든 7개의 모멘트 값
 영상의 **크기, 회전, 이동, 대칭 변환**에 불변
@@ -34,11 +34,11 @@ cv2.grabCut(img, mask, rect, bgdModel, fgdModel, iterCount, mode=None) -> mask, 
 # 모양 비교 함수
 cv2.matchShape(contour1, contour2, method, param) -> retval 
 ```
-`contour1,2` : 외곽선 또는 grayscale 영상
-`method` : 비교 방법 지정. `cv2.CONTOURS_MATCH_I1~3`. `I3`을 추천. ->  $I_3(A,B) = max_{i=1...7}\frac{|m_i^A-m_i^B|}{|m_i^A|}$
-`param` : 사용되지 않음. 0 지정.
-`retval` : 두 외곽선 또는 grayscale 영상 사이의 거리
-Hu 의 불변 모멘트를 이용하여 비교. -> **크기,회전,이동,대칭 변환** 에 강인 
+`contour1,2` : 외곽선 또는 grayscale 영상  
+`method` : 비교 방법 지정. `cv2.CONTOURS_MATCH_I1~3`. `I3`을 추천. ->  $I_3(A,B) = max_{i=1...7}\frac{|m_i^A-m_i^B|}{|m_i^A|}$  
+`param` : 사용되지 않음. 0 지정.  
+`retval` : 두 외곽선 또는 grayscale 영상 사이의 거리  
+Hu 의 불변 모멘트를 이용하여 비교. -> **크기,회전,이동,대칭 변환** 에 강인  
 -> *임의의 변형이 있을 시 잘 동작하지 않을 수 있다.*
 
 ## 3. 템플릿 매칭
@@ -52,9 +52,9 @@ Hu 의 불변 모멘트를 이용하여 비교. -> **크기,회전,이동,대칭
 # 템플릿 매칭 함수
 cv2.matchTemplate(img, templ, method, result=None, mask=None) -> result
 ```
-`templ` : 템플릿 영상. `img` 보다 같거나 작은 크기, 같은 타입
-`method` : 비교 방법. `cv2.TM_CCOEFF_NORMED` 이 성능면에서 가장 많이 쓰인다.
-`result` : 비교 결과 행렬. `shape=(W-w+1,H-h+1)` -> `cv2.minMaxLoc` 사용해서 확인. 특정 값 이상이 되었을때 찾음.
+`templ` : 템플릿 영상. `img` 보다 같거나 작은 크기, 같은 타입  
+`method` : 비교 방법. `cv2.TM_CCOEFF_NORMED` 이 성능면에서 가장 많이 쓰인다.  
+`result` : 비교 결과 행렬. `shape=(W-w+1,H-h+1)` -> `cv2.minMaxLoc` 사용해서 확인. 특정 값 이상이 되었을때 찾음.  
 ![method1](./image/method1.png)
 ![method2](./image/method2.png)
 
@@ -95,15 +95,15 @@ cv2.matchTemplate(img, templ, method, result=None, mask=None) -> result
 		cv2.CascadeClassifier.detectMultiScale(img, scaleFactor=None, minNeighbors=None,
 		 flags=None, minSize=None, maxSize=None) -> result
 		```
-		`scaleFactor` : 영상 축소 비율. 기본값 1.1
-		`minNeighbors` : 최종 검출 영역으로 설정할 최소 이웃 사각형 개수. 기본값 3
-		`result` : 검출된 객체의 사각형 정보(x,y,w,h) 담은 `np.ndarray`
-		파라미터 값을 잘 주면 속도를 빠르게 할수 있다.
+		`scaleFactor` : 영상 축소 비율. 기본값 1.1  
+		`minNeighbors` : 최종 검출 영역으로 설정할 최소 이웃 사각형 개수. 기본값 3  
+		`result` : 검출된 객체의 사각형 정보(x,y,w,h) 담은 `np.ndarray`  
+		파라미터 값을 잘 주면 속도를 빠르게 할수 있다.  
 > 현재는 딥러닝 기반의 얼굴 검출을 한다. 간단히 사용할때 정도만 사용하면 된다.
 
 ## 5. HOG 보행자 검출
 * HOG(Histogram of Oriented Gradients)
-	영상의 지역적 그래디언트 방향 정보를 특징 벡터로 사용.
+	영상의 지역적 그래디언트 방향 정보를 특징 벡터로 사용.  
 	알고리즘
 	1.	입력 영상에서 부분 영상 추출
 	2.	크기 정규화(64 X 128)
@@ -128,10 +128,10 @@ cv2.matchTemplate(img, templ, method, result=None, mask=None) -> result
 									   scale=None,finalThreshold=None,useMeanshiftGrouping=None) 
 									    -> foundLocations, foundWeights, 
 	```
-	`img` : 입력 영상.
-	`scale` : 검색 윈두오 크기 확대 비율 기본값 1.05. 해당 값 제외 건드릴게 없다고 봐도 무방.
-	`foundLocations` : 검출된 사각형 영역 정보
-	`foundWeights` : 검출된 사각형 영역에 대한 정보
+	`img` : 입력 영상.  
+	`scale` : 검색 윈두오 크기 확대 비율 기본값 1.05. 해당 값 제외 건드릴게 없다고 봐도 무방.  
+	`foundLocations` : 검출된 사각형 영역 정보  
+	`foundWeights` : 검출된 사각형 영역에 대한 정보  
 
 
 ## 6. 실습
