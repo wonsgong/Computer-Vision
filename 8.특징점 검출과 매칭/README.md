@@ -103,11 +103,11 @@ Harris, GFTT, FAST 코너의 문제점인 **크기 변환** 에 대해서 다양
 두 영상에서 추출한 특징점 기술자를 비교하여 서로 유사한 기술자를 찾는 작업
 ![matchclass](./image/matchclass.png). 
 상속받은 `cv2.BFMatcher` 나 `cv2.FlannBaseMatcher` 를 사용한다.  
-`cv2.DMatch` 클래스를 반환.   
-	`queryIdx` 는 첫번째 영상의 특징점 번호.  
-	`trainIdx` 는 두번째 영상의 특징점 번호. 
-	`imgIdx` 두번째 영상이 여러개일 경우. 번호.   
-	`distance` 유사도 값.  
+`cv2.DMatch` 클래스를 반환.     
+	`queryIdx` 는 첫번째 영상의 특징점 번호.    
+	`trainIdx` 는 두번째 영상의 특징점 번호.   
+	`imgIdx` 두번째 영상이 여러개일 경우. 번호.     
+	`distance` 유사도 값.    
 
 * 특징점 매칭 알고리즘 객체 생성
 	```python
