@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "/Users/wonsanghyeog/miniforge3/envs/tf/bin/python",
-    "python.languageServer": "Jedi",
-    "python.analysis.extraPaths": [
-        "/usr/local/lib/python3.8/sist-packages/cv2/python-3.8"
-    ]
-}
