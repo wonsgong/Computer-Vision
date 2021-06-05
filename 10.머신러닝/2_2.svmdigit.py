@@ -1,0 +1,113 @@
+import numpy as np
+import cv2
+import sys
+
+oldx , oldy = -1, -1
+
+def onMouse(event, x, y, flags, _) :
+    global oldx, oldy
+
+    if event == cv2.EVENT_LBUTTONDOWN :
+        oldx, oldy = x,y
+
+    if event == cv2.EVENT_LBUTTONUP :
+        oldx, oldy = -1,-1
+
+    if event == cv2.EVENT_MOUSEMOVE :
+        if flags & cv2.EVENT_FLAG_LBUTTON :
+            cv2.line(img, (oldx,oldy), (x,y), 255,40,cv2.LINE_AA)
+            oldx, oldy = x,y
+            cv2.imshow('img', img)
+
+
+
+
+digits = cv2.imread("image/digits.png",cv2.IMREAD_GRAYSCALE)
+
+if digits is None :
+    print("Image load failed")
+    sys.exit()
+
+h,w = digits.shape[:2]
+hog = cv2.HOGDescriptor((20,20),(10,10),(5,5),(5,5),9)
+
+# 학습 데이터 & 라벨 데이터 생성
+cells = [np.hsplit(row,w//20) for row in np.vsplit(digits,h//20)]
+cells = np.array(cells)
+cells = cells.reshape(-1,20,20)
+
+desc = []
+for cell in cells :
+    desc.append(hog.compute(cell))
+
+desc_train = np.array(desc).squeeze().astype(np.float32)
+desc_label = np.repeat(np.arange(10), len(desc_train)/10)
+print(desc_train.shape)
+
+# SVM 모델 생성
+svm = cv2.ml.SVM_create()
+svm.setType(cv2.ml.SVM_C_SVC)
+svm.setKernel(cv2.ml.SVM_RBF)
+
+# 시간 상 주어진 C 값과 감마 값으로 설정.
+svm.setC(2.5)
+svm.setGamma(0.50625)
+# svm.trainAuto(desc_train[:1000],cv2.ml.ROW_SAMPLE,desc_label[:1000])
+
+svm.train(desc_train,cv2.ml.ROW_SAMPLE,desc_label)
+# 학습된 SVM 저장.
+svm.save('svmdigit.yml')
+
+
+img = np.zeros((500,500),np.uint8)
+cv2.imshow('img',img)
+cv2.setMouseCallback('img', onMouse)
+
+while True :
+    key = cv2.waitKey()
+
+    if key == 27 :
+        break
+
+    elif key == ord(' ') :
+        testImg = cv2.resize(img, (20,20),interpolation=cv2.INTER_AREA)
+        testImg = hog.compute(testImg).T 
+        _, ret = svm.predict(testImg)
+
+        print(int(ret[0,0]))
+        img.fill(0)
+        cv2.imshow('img', img)    
+        
+cv2.destroyAllWindows()
+
+
+# 학습된 SVM 로드
+svm = cv2.ml.SVM_load('svmdigit.yml')
+
+if svm.empty() :
+    print("SVM load failed")
+    sys.eixt()
+else :
+    print("SVM load")
+
+
+img = np.zeros((500,500),np.uint8)
+cv2.imshow('img',img)
+cv2.setMouseCallback('img', onMouse)
+
+while True :
+    key = cv2.waitKey()
+
+    if key == 27 :
+        break
+
+    elif key == ord(' ') :
+        testImg = cv2.resize(img, (20,20),interpolation=cv2.INTER_AREA)
+        testImg = hog.compute(testImg).T 
+        _, ret = svm.predict(testImg)
+
+        print(int(ret[0,0]))
+        img.fill(0)
+        cv2.imshow('img', img)    
+        
+cv2.destroyAllWindows()
