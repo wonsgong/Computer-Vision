@@ -3,7 +3,7 @@
 ## 1. 딥러닝 이해하기
 > 2000년대부터 사용되고 있는 심층 신경망(deep neural network) 의 또 다른 이름.
 
-* 머신 러닝(ML) vs 딥러닝(DL)
+* 머신 러닝(ML) vs 딥러닝(DL).  
 	![mldl](./image/mldl.png).  
 	Feature extraction 을 유저가 직접하는 것과 모델 안에서 동작하는 것의 차이.  
 
@@ -14,7 +14,7 @@
 	영상 변환(Image-to-Image translation) : 낮 -> 밤.  
 	영상 인페인팅(Image Inpainting) : 누락된 부분 영상을 채워주는 작업.   
 
-* 기본적인 딥러닝 용어
+* 기본적인 딥러닝 용어.  
 	`퍼셉트론(Perceptron)` : 다수의 입력으로부터 가중합을 계산, 이를 이용해 하나의 출력을 만드는 구조.  
 	`활성화 함수(Activation Function)` : 생물학적 뉴런(neuron)에서 입력신호가 일정크기 이상일때만 신호를 전달하는 메커니즘을 모방, 비선형함수를사용(`sigmoid`,'relu' 등).  
 	`(단층)퍼셉트론` : 입력층 -> 출력층.  
@@ -41,7 +41,7 @@
 	3차원 구조의 activation map(H x W x C)의 모든 값을 일렬로 이어 붙임.
 	이후 `sigmoid` , `softmax` 와 같은 함수를 이용해 각 클래스에 대한 확률 값을 결과로 얻는다.  
 
-![cnnlayer](./image/cnnlayer.png).  
+![cnnlayer](./image/cnnlayer.jpg).  
 
 * 유명한 알고리즘
 	1. VGG16 (Simonyan and Zisserman, 2014)  
@@ -55,9 +55,9 @@
 
 ## 3. 딥러닝 학습과 모델 파일 저장.
 > OpenCV DNN 모듈을 이용.  
-> MNIST 데이터 셋을 이용.  
+> MNIST 데이터 셋을 이용. 
 
-
+`.pb` 파일 저장방법에 대해서 `tensorflow>=2.0` 에서 학습하고 추가.      
 
 ## 4. OpenCV DNN 모듈
 미리 학습된 딥러닝 모델을 이용하여 실행하는 기능.  
@@ -67,14 +67,14 @@
 ![module](./image/module.png).  
 
 OpenCV DNN API 
-* 네트워크 불러오기
+* 네트워크 불러오기  
 		`cv2.dnn.readNet(model, config=None, framework=None) -> retval`
 		`model` : 훈련된 가중치를 저장하고 있는 이진 파일 이름.  
 		`config` : 네트워크 구성을 저장하고 있는 텍스트 파일 이름.  
 		`framework` : 명시적인 딥러닝 프레임워크 이름.  
 		`retval` : `cv2.dnn_net` 클래스 객체.  
 		![api](./image/api.png).  
-* 네트워크 입력 블롭(blob) 만들기
+* 네트워크 입력 블롭(blob) 만들기  
 	 `cv2.dnn.blobFromImage(image, scalefactor=None, size=None, mean=None, swapRB=None, crop=None, ddepth=None) -> retval`
 	 `image` : 입력 영상.  
 	 `scalefactor` : 픽셀이[0,255]면 1. 정규화 시 맞춰서 잘 넣어줘야 한다.  
@@ -108,7 +108,7 @@ OpenCV DNN API
 > Tensorflow를 이용하여 한글 손글씨인식을 학습하여 모델을저장하고, OpenCV에서 저장된 모델을 이용하여 한글 인식을 수행하는 프로그램
 
 참고 사이트: IBM "한글 손글씨를 인식 및 번역하는 모바일앱 만들기" [링크](https://developer.ibm.com/kr/journey/create-a-mobile-handwritten-hangul-translation-app/) , [소스코드](https://github.com/IBM/tensorflow-hangul-recognition)
-* 환경 
+* 환경  
 	`tensorflow==1.13.1`,`Pillow>=4.1.1`,`numpy>=1.12.1` ,`scipy>=0.18.1`.  
 	로컬 버전 : `tensorflow==2.4.0` -> 코드 수정해줌.  
 	: `import tensorflow` -> `import tensorflow.compat.v1`
