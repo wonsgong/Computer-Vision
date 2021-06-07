@@ -27,7 +27,7 @@ def norm_hangul(img):
     dst = cv2.warpAffine(img, aff, (0, 0))
     return dst
 
-net = cv2.dnn.readNet("korean_recognition.pb")
+net = cv2.dnn.readNet("dnn/korean_recognition.pb")
 
 if net.empty() :
     print("Err")
@@ -35,7 +35,7 @@ if net.empty() :
 
  
 hangulName = None 
-with open("256-common-hangul.txt","rt",encoding='utf-8') as f :
+with open("dnn/256-common-hangul.txt","rt",encoding='utf-8') as f :
     hangulName = f.read().rstrip("\n").split("\n")
 
 img = np.zeros((500,500),np.uint8)

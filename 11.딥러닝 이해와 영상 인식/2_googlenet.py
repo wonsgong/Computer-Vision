@@ -16,14 +16,14 @@ for n in imgName :
     imgs.append(img)
 
 
-# model = "googlenet/bvlc_googlenet.caffemodel"
-# config = "googlenet/deploy.prototxt"
+# model = "dnn/bvlc_googlenet.caffemodel"
+# config = "dnn/deploy.prototxt"
 
-model = "googlenet/googlenet-9.onnx"
+model = "dnn/googlenet-9.onnx"
 config = ""
 
 modelName = None 
-with open("googlenet/classification_classes_ILSVRC2012.txt") as f :
+with open("dnn/classification_classes_ILSVRC2012.txt") as f :
     modelName = f.read().rstrip("\n").split("\n")
 
 net = cv2.dnn.readNet(model,config)

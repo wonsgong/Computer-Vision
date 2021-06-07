@@ -27,7 +27,7 @@ def norm_digit(img):
     dst = cv2.warpAffine(img, aff, (0, 0))
     return dst
 
-net = cv2.dnn.readNet('mnist_cnn.pb')
+net = cv2.dnn.readNet('dnn/mnist_cnn.pb')
 
 img = np.zeros((500,500),dtype=np.uint8)
 cv2.imshow('img', img)

@@ -121,4 +121,5 @@ OpenCV DNN API
 	3. 모델 학습
 		`python hangul_model_for_opencv.py --label-file labels\256-common-hangul.txt`
 
-> 버전의 문제인지 OpenCV 의 문제인지 모르겠는데 `net.forward()`에서 에러나네... 환경 맞춰서 해보고 정리하자
+> ~~버전의 문제인지 OpenCV 의 문제인지 모르겠는데 `net.forward()`에서 에러나네... 환경 맞춰서 해보고 정리하자~~  
+> 코드에서 권장하는 환경으로 구성하니 잘 돌아간다. 역시 환경 구축이 제일 중요한가보다.
