@@ -144,8 +144,7 @@
 ### 모델 파일 다운로드 링크
 
 * 얼굴 검출.  
-	모델 파일 :   
-	[Caffe(FP16)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180205_fp16/res10_300x300_ssd_iter_140000_fp16.caffemodel) / [TensorFlow(uint8)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180220_uint8/opencv_face_detector_uint8.pb).  
+	모델 파일 : [Caffe(FP16)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180205_fp16/res10_300x300_ssd_iter_140000_fp16.caffemodel) / [TensorFlow(uint8)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180220_uint8/opencv_face_detector_uint8.pb).  
 	구성 파일 : [맞는거 쓰세요](https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector).  
 
 * YOLOv3.  
