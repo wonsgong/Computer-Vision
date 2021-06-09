@@ -136,7 +136,7 @@
 > SSD 로 얼굴을 검출한 후 학습 모델을 가지고 해당 얼굴이 누구인지 인식+라벨.  
 
 * 모델 학습 
-	[face_rec](./face_rec) 폴더의 코드 참고.
+	[face_rec](./face_rec) 폴더의 코드 참고.  
 	`face_capture.py` :  영상에서 얼굴을 검출 후 이미지로 저장.  
 	`face_rec_train.py` : 라벨링된 이미지를 가지고 학습을 시켜 모델 생성.  
 
@@ -145,19 +145,18 @@
 
 * 얼굴 검출.  
 	모델 파일 :   
-	[Caffe(FP16)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180205_fp16/res10_300x300_ssd_iter_140000_fp16.caffemodel).  
-	[TensorFlow(uint8)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180220_uint8/opencv_face_detector_uint8.pb).  
-	구성 파일 : [github](https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector).  
+	[Caffe(FP16)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180205_fp16/res10_300x300_ssd_iter_140000_fp16.caffemodel) / [TensorFlow(uint8)](https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180220_uint8/opencv_face_detector_uint8.pb).  
+	구성 파일 : [맞는거 쓰세요](https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector).  
 
 * YOLOv3.  
 	모델 파일 : [yolov3.weight](https://pjreddie.com/media/files/yolov3.weights).  
-	설정 파일 : [yolov3.cfg](https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg)
-	클래스 이름 : [voc_names](https://github.com/pjreddie/darknet/blob/master/data/voc.names)
+	설정 파일 : [yolov3.cfg](https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg).  
+	클래스 이름 : [voc_names](https://github.com/pjreddie/darknet/blob/master/data/voc.names).  
 
 * Mask-RCNN.  
 	모델 파일 : [mask_rcnn~.pb](http://download.tensorflow.org/models/object_detection/mask_rcnn_inception_v2_coco_2018_01_28.tar.gz).  
 	설정 파일 : [mask_rcnn~.pbtxt](https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt).  
-	클래스 이름 : [coco_90.names](c:\coding\python\opencv\ch13\mask_rcnn\coco_90.names).  
+	클래스 이름 : [coco_90.names](https://github.com/amikelive/coco-labels).  
 
 * OpenPose(COCO,18parts).  
 	모델 파일 : [pose_~.caffemodel](http://posefs1.perception.cs.cmu.edu/OpenPose/models/pose/coco/pose_iter_440000.caffemodel).  
